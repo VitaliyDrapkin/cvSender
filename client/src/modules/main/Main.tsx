@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { MessagesRequests } from "../../API/MessagesRequests";
 import s from "./Main.module.css";
 
 function Main() {
@@ -16,6 +17,7 @@ function Main() {
     console.log(recipientEmail);
     console.log(subject);
     console.log(message);
+    MessagesRequests.sendMessage();
   };
   return (
     <div>

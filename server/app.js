@@ -15,7 +15,7 @@ server.use(express.urlencoded({ extended: false }));
 const PORT = process.env.PORT || 3001;
 server.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
-server.use("/message", messageRoute);
+server.use("/messages", messageRoute);
 
 server.use(errorHandler);
 
