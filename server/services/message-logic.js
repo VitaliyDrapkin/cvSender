@@ -1,11 +1,16 @@
 const nodemailer = require("nodemailer");
 
-async function sendMessage() {
+async function sendMessage(from, pass, to, subject, message) {
+  console.log("from : " + from);
+  console.log("pass : " + pass);
+  console.log("to : " + to);
+  console.log("subject : " + subject);
+  console.log("message : " + message);
   const transporter = nodemailer.createTransport({
     service: "gmail.com",
     auth: {
-      user: "drapkinvitaliy@gmail.com",
-      pass: "tucd7s45bjuxzr6c",
+      user: from,
+      pass: pass,
     },
     tls: {
       rejectUnauthorized: false,
@@ -13,10 +18,11 @@ async function sendMessage() {
   });
 
   var mailOptions = {
-    from: "drapkinvitaliy@gmail.com",
-    to: "drapkinvitaliy@gmail.com",
-    subject: "Sending Email using Node.js",
-    text: "That was easy!",
+    from: from,
+    to: to,
+    subject: subject,
+    text: message,
+    html: "<div dir='rtl'>" + message + "</div>",
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

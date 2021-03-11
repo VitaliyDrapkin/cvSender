@@ -4,20 +4,19 @@ import s from "./Main.module.css";
 
 function Main() {
   const [ownEmail, setOwnEmail] = useState("");
-  const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [recipientEmail, setRecipientEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
   const sendEmail = () => {
-    console.log(ownEmail);
-    console.log(user);
-    console.log(password);
-    console.log(recipientEmail);
-    console.log(subject);
-    console.log(message);
-    MessagesRequests.sendMessage();
+    MessagesRequests.sendMessage(
+      ownEmail,
+      password,
+      recipientEmail,
+      subject,
+      message
+    );
   };
   return (
     <div>
@@ -31,17 +30,6 @@ function Main() {
             value={ownEmail}
             onChange={(e) => {
               setOwnEmail(e.target.value);
-            }}
-          />
-        </div>
-        <div className="user">
-          <span>User : </span>
-          <input
-            type="text"
-            placeholder="User name email"
-            value={user}
-            onChange={(e) => {
-              setUser(e.target.value);
             }}
           />
         </div>

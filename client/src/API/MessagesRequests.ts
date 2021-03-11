@@ -1,9 +1,19 @@
 import { instance } from "./ApiSettings";
 
 export const MessagesRequests = {
-  sendMessage: async (): Promise<any> => {
+  sendMessage: async (
+    from: string,
+    password: string,
+    to: string,
+    subject: string,
+    message: string
+  ): Promise<any> => {
     const response = await instance.post<any>(`/messages/`, {
-      headers: {},
+      from,
+      password,
+      to,
+      subject,
+      message,
     });
 
     return response.data;
