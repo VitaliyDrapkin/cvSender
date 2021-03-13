@@ -1,11 +1,9 @@
 const nodemailer = require("nodemailer");
 
 async function sendMessage(from, pass, to, subject, message) {
-  console.log("from : " + from);
-  console.log("pass : " + pass);
-  console.log("to : " + to);
-  console.log("subject : " + subject);
-  console.log("message : " + message);
+  message = convertMessageToHtml(message);
+  emails = convertEmailsToArrays(to);
+
   const transporter = nodemailer.createTransport({
     service: "gmail.com",
     auth: {
@@ -17,21 +15,31 @@ async function sendMessage(from, pass, to, subject, message) {
     },
   });
 
-  var mailOptions = {
-    from: from,
-    to: to,
-    subject: subject,
-    text: message,
-    html: "<div dir='rtl' white-space='pre'>" + message + "</div>",
-  };
+  emails.forEach((element) => {
+    var mailOptions = {
+      from: from,
+      to: element,
+      subject: subject,
+      text: message,
+      html: "<div dir='rtl'>" + message + "</div>",
+    };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
   });
+}
+
+function convertMessageToHtml(message) {
+  return message.replace(/\r?\n/g, "<br>");
+}
+
+function convertEmailsToArrays(emails) {
+  return emails.split(",");
 }
 
 module.exports = {

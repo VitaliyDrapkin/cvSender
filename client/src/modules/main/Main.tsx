@@ -5,7 +5,7 @@ import s from "./Main.module.css";
 function Main() {
   const [ownEmail, setOwnEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [recipientEmail, setRecipientEmail] = useState("");
+  const [recipientEmails, setRecipientEmails] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
@@ -13,9 +13,9 @@ function Main() {
     MessagesRequests.sendMessage(
       ownEmail,
       password,
-      recipientEmail,
+      recipientEmails,
       subject,
-      message.replace(/\r?\n/g, "<br>")
+      message
     );
   };
   return (
@@ -49,9 +49,9 @@ function Main() {
           <input
             type="text"
             placeholder="Recipient email"
-            value={recipientEmail}
+            value={recipientEmails}
             onChange={(e) => {
-              setRecipientEmail(e.target.value);
+              setRecipientEmails(e.target.value);
             }}
           />
         </div>
