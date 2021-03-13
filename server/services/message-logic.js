@@ -22,7 +22,7 @@ async function sendMessage(from, pass, to, subject, message) {
     to: to,
     subject: subject,
     text: message,
-    html: "<div dir='rtl'>" + message + "</div>",
+    html: "<div dir='rtl' white-space='pre'>" + message + "</div>",
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

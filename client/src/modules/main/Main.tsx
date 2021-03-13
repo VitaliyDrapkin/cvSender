@@ -9,13 +9,13 @@ function Main() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
-  const sendEmail = () => {
+  const onClickSendEmail = () => {
     MessagesRequests.sendMessage(
       ownEmail,
       password,
       recipientEmail,
       subject,
-      message
+      message.replace(/\r?\n/g, "<br>")
     );
   };
   return (
@@ -76,7 +76,7 @@ function Main() {
             }}
           />
         </div>
-        <button onClick={sendEmail}>Send</button>
+        <button onClick={onClickSendEmail}>Send</button>
       </div>
     </div>
   );
