@@ -9,14 +9,17 @@ function Main() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
-  const onClickSendEmail = () => {
-    MessagesRequests.sendMessage(
-      ownEmail,
-      password,
-      recipientEmails,
-      subject,
-      message
-    );
+  const onClickSendEmail = async () => {
+    try {
+      await MessagesRequests.sendMessage(
+        ownEmail,
+        password,
+        recipientEmails,
+        subject,
+        message
+      );
+      alert("Message sent");
+    } catch (error) {}
   };
   return (
     <div>
