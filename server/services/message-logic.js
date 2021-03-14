@@ -20,8 +20,12 @@ async function sendMessage(from, pass, to, subject, message) {
       from: from,
       to: element,
       subject: subject,
-      text: message,
       html: "<div dir='rtl'>" + message + "</div>",
+      attachments: [
+        {
+          path: "to/../upload/Vitaliy Drapkin - Full Stack Developer.pdf",
+        },
+      ],
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
